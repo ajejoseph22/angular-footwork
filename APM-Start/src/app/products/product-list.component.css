@@ -1,0 +1,10 @@
+thead {
+  color: #444;
+}
+
+tr.no-records {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  text-transform: capitalize;
+}
