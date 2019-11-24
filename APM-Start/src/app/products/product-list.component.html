@@ -5,14 +5,14 @@
   <div class="card-body">
     <div *ngIf="isLoading; then loading; else loaded"></div>
     <ng-template #loading>
-      <app-half-circle-spinner [animationDuration]="1000" [size]="60" [color]="'#000'"></app-half-circle-spinner>
+      <pm-spinner></pm-spinner>
     </ng-template>
     <!-- Here  -->
     <ng-template #loaded>
       <div class="row">
         <div class="col-md-2">Filter by:</div>
         <div class="col-md-4">
-          <input type="text" class="form-control" [(ngModel)]="listFilter" />
+          <input type="text" class="form-control" [(ngModel)]="listFilter"/>
         </div>
       </div>
       <div class="row">
@@ -23,18 +23,18 @@
       <div class="table-responsive">
         <table aria-describedby="productsTable" class="table" *ngIf="products && products.length">
           <thead>
-            <tr>
-              <th scope="col">
-                <button [style.width.px]="buttonWidth" (click)="toggleImageShow()" class="btn btn-primary">
-                  {{ showImage ? 'Hide Images' : 'Show Images' }}
-                </button>
-              </th>
-              <th scope="col">Product</th>
-              <th scope="col">Code</th>
-              <th scope="col">Available</th>
-              <th scope="col">Price</th>
-              <th scope="col">5 Star Rating</th>
-            </tr>
+          <tr>
+            <th scope="col">
+              <button [style.width.px]="buttonWidth" (click)="toggleImageShow()" class="btn btn-primary">
+                {{ showImage ? 'Hide Images' : 'Show Images' }}
+              </button>
+            </th>
+            <th scope="col">Product</th>
+            <th scope="col">Code</th>
+            <th scope="col">Available</th>
+            <th scope="col">Price</th>
+            <th scope="col">5 Star Rating</th>
+          </tr>
           </thead>
           <div *ngIf="filteredProducts.length; then records; else noRecords"></div>
         </table>
@@ -43,41 +43,43 @@
 
     <ng-template #records>
       <tbody>
-        <tr *ngFor="let product of filteredProducts">
-          <td>
-            <img
-              *ngIf="showImage"
-              alt="{{ product.productName }} icon"
-              [style.width.px]="imageWidth"
-              [style.margin.px]="imageMargin"
-              style="cursor:pointer"
-              src="../../assets/images/{{ product.imageUrl }}"
-              [title]="product.productName"
-            />
-          </td>
-          <td>
-            {{ product.productName }}
-          </td>
-          <td>
-            {{ product.productCode | convertToSpaces: '-' }}
-          </td>
-          <td>
-            Yes
-          </td>
-          <td>{{ product.price | currency: 'USD':'symbol':'1.2-2' }}</td>
-          <td>
-            <star [rating]="product.starRating" (clickedARating)="clickedARating($event)"></star>
-          </td>
-        </tr>
+      <tr *ngFor="let product of filteredProducts">
+        <td>
+          <img
+            *ngIf="showImage"
+            alt="{{ product.productName }} icon"
+            [style.width.px]="imageWidth"
+            [style.margin.px]="imageMargin"
+            style="cursor:pointer"
+            src="../../assets/images/{{ product.imageUrl }}"
+            [title]="product.productName"
+          />
+        </td>
+        <td><a [routerLink]="['/products',product.productId]">
+          {{ product.productName }}
+        </a>
+        </td>
+
+        <td>
+          {{ product.productCode | convertToSpaces: '-' }}
+        </td>
+        <td>
+          Yes
+        </td>
+        <td>{{ product.price | currency: 'USD':'symbol':'1.2-2' }}</td>
+        <td>
+          <star [rating]="product.starRating" (clickedARating)="clickedARating($event)"></star>
+        </td>
+      </tr>
       </tbody>
     </ng-template>
     <ng-template #noRecords>
       <tbody>
-        <tr class="no-records">
-          <td>
-            No Records
-          </td>
-        </tr>
+      <tr class="no-records">
+        <td>
+          No Records
+        </td>
+      </tr>
       </tbody>
     </ng-template>
   </div>
