@@ -10,9 +10,10 @@ import {HalfCircleSpinnerModule} from 'angular-epic-spinners';
 import {RouterModule} from '@angular/router';
 import {ProductDetailComponent} from './products/product-detail.component';
 import {WelcomeComponent} from './welcome/welcome.component';
+import { SpinnerComponent } from './shared/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, StarComponent, ProductListComponent, ConvertToSpaces, ProductDetailComponent, WelcomeComponent],
+  declarations: [AppComponent, StarComponent, ProductListComponent, ConvertToSpaces, ProductDetailComponent, WelcomeComponent, SpinnerComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -20,7 +21,7 @@ import {WelcomeComponent} from './welcome/welcome.component';
     HalfCircleSpinnerModule,
     RouterModule.forRoot([
       {path: 'products', component: ProductListComponent},
-      {path: 'products/:id', component: ProductListComponent},
+      {path: 'products/:id', component: ProductDetailComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'},

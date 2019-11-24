@@ -1,7 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <h1>{{ pageTitle }}</h1>
-  <div>
-    <pm-products (receivedClickedRating)="clickedARating($event)"></pm-products>
-  </div>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" routerLink='/'>{{ pageTitle }}</a>
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/'>Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='/products'>Products</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+<!--    <pm-products (receivedClickedRating)="clickedARating($event)"></pm-products>-->
+
