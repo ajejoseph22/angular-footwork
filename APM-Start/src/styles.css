@@ -19,6 +19,10 @@ div.card {
   margin-top: 10px;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 app-half-circle-spinner .half-circle-spinner {
   margin: 100px auto;
 }

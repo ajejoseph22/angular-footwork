@@ -1,7 +1,7 @@
 <div class='card'>
   <div *ngIf="isLoading; then loading; else loaded"></div>
   <ng-template #loading>
-    <div style="height:fit-content">
+    <div>
       <pm-spinner></pm-spinner>
     </div>
   </ng-template>
@@ -47,7 +47,7 @@
           </div>
 
           <div class='col-md-4'>
-            <img class='center-block img-responsive pointer'
+            <img class='center-block img-responsive cursor-pointer'
                  [style.width.px]='200'
                  [style.margin.px]='2'
                  src='"../../assets/images/{{product.imageUrl}}'
