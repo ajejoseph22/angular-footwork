@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
   templateUrl: "./app.component.html"
 })
 export class AppComponent {
-  pageTitle = "My fucking string";
+  pageTitle = "FootWork";
 
   clickedARating(rating: number): void {
     this.pageTitle = rating.toString();
