@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   imageWidth = 40;
   imageMargin = "2";
   buttonWidth = 140;
-  showImage = false;
+  showImage = !!localStorage.getItem("showImage");
   filteredProducts: IProduct[];
   products: IProduct[];
   isLoading = true;
@@ -49,6 +49,7 @@ export class ProductListComponent implements OnInit {
 
   toggleImageShow(): void {
     this.showImage = !this.showImage;
+    localStorage.setItem("showImage", this.showImage ? "true" : "");
   }
 
   clickedARating(rating: number): void {
@@ -57,6 +58,10 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // set showImage to false if localStorage is empty
+    if (localStorage.getItem("showImage") === undefined) {
+      localStorage.setItem("showImage", "");
+    }
     this.productService.getProducts().subscribe({
       next: products => {
         this.products = products;
