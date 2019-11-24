@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IProduct } from './product';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {IProduct} from './product';
 import ProductService from './products.service';
 
 @Component({
@@ -9,22 +9,25 @@ import ProductService from './products.service';
   providers: [ProductService],
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {
+  }
+
   @Output()
   receivedClickedRating: EventEmitter<number> = new EventEmitter<number>();
-  pageTitle: string = 'Product List';
-  imageWidth: number = 40;
-  imageMargin: string = '2';
-  buttonWidth: number = 140;
-  showImage: boolean = false;
+  pageTitle = 'Product List';
+  imageWidth = 40;
+  imageMargin = '2';
+  buttonWidth = 140;
+  showImage = false;
   filteredProducts: IProduct[];
   products: IProduct[];
-  isLoading: boolean = true;
+  isLoading = true;
   errorMessage: string;
   _listFilter: string;
   get listFilter(): string {
     return this._listFilter;
   }
+
   set listFilter(value: string) {
     this._listFilter = value;
     this.filteredProducts = this.listFilter ? this.getFilteredProducts(this.listFilter) : this.products;
