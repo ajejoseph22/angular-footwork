@@ -27,6 +27,9 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: products => {
         this.product = products.find(product => product.productId === id);
+        if (!this.product) {
+          this.errorMessage = `Product with id '${id}' not found.`;
+        }
         this.isLoading = false;
 
       },
