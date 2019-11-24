@@ -1,22 +1,21 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {IProduct} from './product';
-import ProductService from './products.service';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { IProduct } from "../product";
+import ProductService from "../products.service";
 
 @Component({
-  selector: 'pm-products',
-  templateUrl: 'product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
-  providers: [ProductService],
+  selector: "pm-products",
+  templateUrl: "product-list.component.html",
+  styleUrls: ["./product-list.component.css"],
+  providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productService: ProductService) {
-  }
+  constructor(private productService: ProductService) {}
 
   @Output()
   receivedClickedRating: EventEmitter<number> = new EventEmitter<number>();
-  pageTitle = 'Product List';
+  pageTitle = "Product List";
   imageWidth = 40;
-  imageMargin = '2';
+  imageMargin = "2";
   buttonWidth = 140;
   showImage = false;
   filteredProducts: IProduct[];
@@ -30,7 +29,9 @@ export class ProductListComponent implements OnInit {
 
   set listFilter(value: string) {
     this._listFilter = value;
-    this.filteredProducts = this.listFilter ? this.getFilteredProducts(this.listFilter) : this.products;
+    this.filteredProducts = this.listFilter
+      ? this.getFilteredProducts(this.listFilter)
+      : this.products;
   }
 
   getFilteredProducts(value: string): IProduct[] {
@@ -62,7 +63,7 @@ export class ProductListComponent implements OnInit {
         this.filteredProducts = this.products;
         this.isLoading = false;
       },
-      error: err => (this.errorMessage = err),
+      error: err => (this.errorMessage = err)
     });
   }
 }
